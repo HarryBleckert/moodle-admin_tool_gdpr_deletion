@@ -155,7 +155,7 @@ foreach ( $users as $user )
 		
 		//$trace = new text_progress_trace();
 		//$contextlists = $manager->get_contexts_for_userid($user->id,$trace);
-		$contextlists = $manager->get_contexts_for_userid($user->id);
+		$contextlists = $manager->get_contexts_for_userid($user->id,false);
 		
 		foreach ($contextlists as $contextlist) {
 			@$approvedlist->add_contextlist(new \core_privacy\local\request\approved_contextlist(
@@ -178,10 +178,10 @@ foreach ( $users as $user )
 				$enrol_db ='moodle_ash_enrol';
 				$enrol = new PDO("pgsql:host=$host;dbname=$enrol_db", $dbuser, $dbpass);
 				// save to archive before deleting
-				$query = "INSERT INTO ash_enrolments_old SELECT * WHERE username='".$user->username."' AND username NOT IN(SELECT username FROM ash_enrolments_old);"; #($efields)
-				$enrol->query("DELETE FROM ash_enrolments WHERE username='$user->username'"); 
+				$query = "INSERT INTO ash_enrolments_old SELECT * FROM ash_enrolments WHERE username='".$user->username."' AND username NOT IN(SELECT username FROM ash_enrolments_old);";
 				$enrol->query($query);
-			}
+                $enrol->query("DELETE FROM ash_enrolments WHERE username='$user->username'");
+            }
 		}
 		$DB->execute("UPDATE {user} SET deleted=1,suspended=1 WHERE id=$user->id");
 		@ob_get_clean();@ob_start(); 
