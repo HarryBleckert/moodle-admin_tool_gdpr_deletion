@@ -11,25 +11,23 @@
  *
 */
 
-
 //require_once("../../../config.php");
 defined('MOODLE_INTERNAL') || die();
 global $CFG, $PAGE, $ADMIN;
 
-
 //if ($hassiteconfig) {
-	/*
-    // Add own category for plugin's  and subplugins' settings.
-    $ADMIN->add('users', new admin_category('tool_gdpr_deletion', get_string('pluginname', 'tool_gdpr_deletion')));
-    // Add entry for own settings.
-    $ADMIN->add('tool_gdpr_deletion', new admin_externalpage('tool_gdpr_deletion',
-        get_string('pluginname', 'tool_gdpr_deletion'),
-        "$CFG->wwwroot/$CFG->admin/tool/gdpr_deletion/index.php"
-    ));
-	*/
+/*
+// Add own category for plugin's  and subplugins' settings.
+$ADMIN->add('users', new admin_category('tool_gdpr_deletion', get_string('pluginname', 'tool_gdpr_deletion')));
+// Add entry for own settings.
+$ADMIN->add('tool_gdpr_deletion', new admin_externalpage('tool_gdpr_deletion',
+    get_string('pluginname', 'tool_gdpr_deletion'),
+    "$CFG->wwwroot/$CFG->admin/tool/gdpr_deletion/index.php"
+));
+*/
 //}
 
 $ADMIN->add('accounts', new admin_externalpage('tool_gdpr_deletion',
         get_string('pluginname', 'tool_gdpr_deletion'),
         "$CFG->wwwroot/$CFG->admin/tool/gdpr_deletion/index.php", "moodle/user:update"
-    ));
+));

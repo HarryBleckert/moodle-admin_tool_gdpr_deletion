@@ -27,16 +27,16 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
 
-    'tool/gdpr_deletion:addinstance' => array(
-        'riskbitmask' => RISK_XSS,
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_USER,
-        'archetypes' => array(
-            //'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_PROHIBIT
+        'tool/gdpr_deletion:addinstance' => array(
+                'riskbitmask' => RISK_XSS,
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_USER,
+                'archetypes' => array(
+                    //'editingteacher' => CAP_ALLOW,
+                        'manager' => CAP_PROHIBIT
+                )
+            //        ,'clonepermissionsfrom' => 'moodle/course:manageactivities'
         )
-//        ,'clonepermissionsfrom' => 'moodle/course:manageactivities'
-    )
 
 );
 
