@@ -14,4 +14,4 @@
 
 
 Installation:
-copy this plugin folder to admin/tool
+copy this plugin folder gdpr_deletion to admin/tool
