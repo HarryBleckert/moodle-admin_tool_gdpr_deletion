@@ -116,7 +116,7 @@ if ( $userid AND !$hits )
 				gmdate("Y-m-d", $user->lastaccess) ." - created: ". gmdate("Y-m-d", $user->timecreated)."<br>\n"; 
 	}
 	else 
-	{ print "<b style=\"color:red;\">No user found with ID $userid!</b><br>";echo $OUTPUT->footer(); exit; }
+	{ print "<b style=\\";echo $OUTPUT->footer(); exit; }
 }	
 $cnt = $errCnt = 0;
 @ob_flush();@ob_end_flush();@flush();@ob_start(); 
