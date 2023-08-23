@@ -137,6 +137,7 @@ foreach ($users as $user) {
             ". $user->username ($user->id) - $user->firstname $user->lastname - $user->email - Deleted: $user->deleted - Lastaccess: " .
             gmdate("Y-m-d", $user->lastaccess) . " - created: " . gmdate("Y-m-d", $user->timecreated) . "<br>\n";
     print $msg;
+    print "<script>window.scrollTo(0,document.body.scrollHeight);</script>\n";
     if ($user) {
         if ($user->id == $USER->id) { // Self deletion attempt.
             echo $OUTPUT->notification("You tried to delete your own user account. This is not permitted!");
