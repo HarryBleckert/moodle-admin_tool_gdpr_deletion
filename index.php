@@ -171,14 +171,14 @@ foreach ( $users as $user )
 		else
 		{ 	$DB->execute("UPDATE {user} SET deleted=1,suspended=1, timemodified=".time()." WHERE id=$user->id");
 			// for ASH handled by script cleanup_ash_enrol.php - removing all users which are deleted + suspended
-			if ( stristr( $CFG->dirroot, "moodle_production" ) AND !empty($user->username) )
+			if ( isset($CFG->ash) AND stristr( $CFG->dirroot, "moodle_production" ) AND !empty($user->username) )
 			{	$dbuser = 'moodleuser';
 				$dbpass = 'p3NN3';
 				$host = 'localhost';
 				$enrol_db ='moodle_ash_enrol';
 				$enrol = new PDO("pgsql:host=$host;dbname=$enrol_db", $dbuser, $dbpass);
 				// save to archive before deleting
-				$query = "INSERT INTO ash_enrolments_old SELECT * $esql '$username' AND username NOT IN(SELECT username FROM ash_enrolments_old);"; #($efields)
+				$query = "INSERT INTO ash_enrolments_old SELECT * WHERE username='".$user->username."' AND username NOT IN(SELECT username FROM ash_enrolments_old);"; #($efields)
 				$enrol->query("DELETE FROM ash_enrolments WHERE username='$user->username'"); 
 				$enrol->query($query);
 			}
