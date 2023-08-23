@@ -11,10 +11,10 @@
 	- Script utilizes Moodle Core GDPR and privacy classes
 */
 
-if (!defined('REQUIRE_SESSION_LOCK'){
+if (!defined('REQUIRE_SESSION_LOCK')){
     define('REQUIRE_SESSION_LOCK', false);
 }
-if (!defined('NO_OUTPUT_BUFFERING'){
+if (!defined('NO_OUTPUT_BUFFERING')){
     define('NO_OUTPUT_BUFFERING', true);
 }
 require_once("../../../config.php");
