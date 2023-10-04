@@ -224,8 +224,6 @@ if ($errCnt) {
     print "Errors: " . $errMsg;
 }
 print "\n<script>window.scrollTo(0,document.body.scrollHeight);</script>\n";
-@ob_flush();
-@ob_end_flush();
-@flush();
+@ob_flush();@ob_end_flush();@flush();
 echo $OUTPUT->footer();
 
