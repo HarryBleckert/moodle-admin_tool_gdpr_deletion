@@ -23,9 +23,11 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/adminlib.php');
 global $DB, $USER, $CFG;
 
-/*$DB->set_debug(false); 
+/*
+$DB->set_debug(false);
 $CFG->debugdisplay = 0;
-$CFG->debug = 0;*/
+$CFG->debug = 0;
+*/
 //require_login(null,false);
 ini_set("output_buffering", 350);
 
