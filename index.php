@@ -29,7 +29,6 @@ $CFG->debugdisplay = 0;
 $CFG->debug = 0;
 */
 //require_login(null,false);
-ini_set("output_buffering", 350);
 
 $userid = optional_param('userid', 0, PARAM_INT);
 $limit = optional_param('limit', 0, PARAM_INT);
@@ -129,10 +128,11 @@ if ($userid and !$hits) {
     }
 }
 $cnt = $errCnt = 0;
-@ob_flush();
-@ob_end_flush();
-@flush();
-@ob_start();
+if (!defined('NO_OUTPUT_BUFFERING')) {
+    define('NO_OUTPUT_BUFFERING', true);
+}
+ini_set("output_buffering", 350);
+@ob_flush();@ob_end_flush();@flush();@ob_start();
 foreach ($users as $user) {
     $cnt++; //if ( $cnt>=80) { break;}
     $msg = $cnt .
@@ -152,10 +152,7 @@ foreach ($users as $user) {
     }
     if (!$dryrun or ($cnt / 6) == round($cnt / 6, 0)) {
         print "\n<script>window.scrollTo(0,document.body.scrollHeight);</script>\n";
-        @ob_flush();
-        @ob_end_flush();
-        @flush();
-        @ob_start();
+        @ob_flush();@ob_end_flush();@flush();@ob_start();
     }
     if (!$dryrun) {
         set_time_limit(180);
