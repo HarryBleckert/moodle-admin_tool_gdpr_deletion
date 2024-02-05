@@ -135,7 +135,7 @@ ini_set("output_buffering", 350);
 @ob_flush();@ob_end_flush();@flush();@ob_start();
 print "\n<script>const scroll = setInterval(function() {
     window.scrollTo(0, document.body.scrollHeight);
-}, 2000);</script>\n";
+}, 12000);</script>\n";
 foreach ($users as $user) {
     $cnt++; //if ( $cnt>=80) { break;}
     $msg = $cnt .
