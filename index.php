@@ -133,13 +133,16 @@ if (!defined('NO_OUTPUT_BUFFERING')) {
 }
 ini_set("output_buffering", 350);
 @ob_flush();@ob_end_flush();@flush();@ob_start();
+print "\n<script>const scroll = setInterval(function() {
+    window.scrollTo(0, document.body.scrollHeight);
+}, 2000);</script>\n";
 foreach ($users as $user) {
     $cnt++; //if ( $cnt>=80) { break;}
     $msg = $cnt .
             ". $user->username ($user->id) - $user->firstname $user->lastname - $user->email - Deleted: $user->deleted - Lastaccess: " .
             gmdate("Y-m-d", $user->lastaccess) . " - created: " . gmdate("Y-m-d", $user->timecreated) . "<br>\n";
     print $msg;
-    print "<script>window.scrollTo(0,document.body.scrollHeight);</script>\n";
+    // print "<script>window.scrollTo(0,document.body.scrollHeight);</script>\n";
     if ($user) {
         if ($user->id == $USER->id) { // Self deletion attempt.
             echo $OUTPUT->notification("You tried to delete your own user account. This is not permitted!");
@@ -151,7 +154,7 @@ foreach ($users as $user) {
         }
     }
     if (!$dryrun or ($cnt / 6) == round($cnt / 6, 0)) {
-        print "\n<script>window.scrollTo(0,document.body.scrollHeight);</script>\n";
+        // print "\n<script>window.scrollTo(0,document.body.scrollHeight);</script>\n";
         @ob_flush();@ob_end_flush();@flush();@ob_start();
     }
     if (!$dryrun) {
@@ -210,7 +213,9 @@ foreach ($users as $user) {
         @ob_get_clean();
         @ob_start();
     }
+    
 }
+print "\n<script>clearInterval(scroll);</script>\n";
 $endtime = time();
 $elapsed = $endtime - $started;
 
@@ -222,7 +227,7 @@ print "\n<br><hr><b>Processing started at " . date("H:i:s", $started) . ", compl
 if ($errCnt) {
     print "Errors: " . $errMsg;
 }
-print "\n<script>window.scrollTo(0,document.body.scrollHeight);</script>\n";
+
 @ob_flush();@ob_end_flush();@flush();
 echo $OUTPUT->footer();
 
